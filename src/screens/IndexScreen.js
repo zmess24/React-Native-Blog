@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, FlatList, Button, TouchableOpacity } from 'reac
 import { Context } from '../context/BlogContext';
 import { Feather } from '@expo/vector-icons';
 
-export default IndexScreen = ({ navigation }) => {
+const IndexScreen = ({ navigation }) => {
     const { state, addBlogPost, deleteBlogPost } = useContext(Context);
 
     return (
@@ -31,6 +31,14 @@ export default IndexScreen = ({ navigation }) => {
     )
 };
 
+IndexScreen.navigationOptions = ({ navigation }) => {
+    return {
+        headerRight: <TouchableOpacity onPress={() => navigation.navigate('Create')}>
+            <Feather name="plus" size={30}/>
+        </TouchableOpacity>
+    }
+};
+
 const styles = StyleSheet.create({
     row: {
         flexDirection: 'row',
@@ -46,4 +54,6 @@ const styles = StyleSheet.create({
     icon: {
         fontSize: 24
     }
-})
+});
+
+export default IndexScreen;
